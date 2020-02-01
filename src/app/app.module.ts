@@ -8,16 +8,26 @@ import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
 import {Routes, RouterModule} from '@angular/router';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
+import { BoardAdminComponent } from './components/board-admin/board-admin.component';
+import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
+import { BoardUserComponent } from './components/board-user/board-user.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes =[
   {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'user', component: BoardUserComponent},
+  {path: 'mod', component: BoardModeratorComponent},
+  {path: 'admin', component: BoardAdminComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'schedule', component: CalendarComponent},
   {path: '', redirectTo:'/' ,pathMatch: 'full'},
@@ -29,7 +39,12 @@ const routes: Routes =[
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    CalendarComponent
+    CalendarComponent,
+    HomeComponent,
+    BoardAdminComponent,
+    BoardModeratorComponent,
+    BoardUserComponent,
+    ProfileComponent
   ],
   imports: [
     ReactiveFormsModule,
