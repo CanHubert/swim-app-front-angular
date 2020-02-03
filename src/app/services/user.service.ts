@@ -1,33 +1,46 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {TokenStorageService} from "./token-storage.service";
+import {User} from "../common/user";
 
-const API_URL = 'http://localhost:8080/api/test/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http : HttpClient) { }
+  private baseUrl = 'http://localhost:8080/';
+
+  constructor(private http : HttpClient, private tokenStorageService : TokenStorageService) { }
 
   getPublicContent(): Observable<any>{
-    return this.createGet('all');
+    return this.createTextGet('test/all');
   }
 
   getUserBoard(): Observable<any>{
-    return this.createGet('user');
+    return this.createTextGet('test/user');
   }
 
   getModeratorBoard():Observable<any>{
-    return this.createGet('mod');
+    return this.createTextGet('test/mod');
   }
 
   getAdminBoard() :Observable<any>{
-    return this.createGet('admin');
+    return this.createTextGet('test/admin');
   }
 
-  private createGet(endpoint:string): Observable<any>{
-    return this.http.get(API_URL + endpoint, {responseType: "text"});
+  getUserDetails(id: number): Observable<User>{
+    return this.createJsonGet(`api/users/${id}`);
   }
+
+  private createTextGet(endpoint:string): Observable<any>{
+    return this.http.get(this.baseUrl + endpoint, {responseType: "text"});
+  }
+
+  private createJsonGet(endpoint:string): Observable<any>{
+
+    return this.http.get(this.baseUrl + endpoint, {responseType: "json"});
+  }
+
 }
