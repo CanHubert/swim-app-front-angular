@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AuthService} from "../../services/auth.service";
+import { TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-login',
@@ -8,24 +8,49 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  form: any= {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(private route: ActivatedRoute,
-              private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    //  this.route.paramMap.subscribe(()=>{
-
-    //  })
-    this.form = this.formBuilder.group({
-      name : ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
-    })
-
+    console.log("oninit")
+    if(this.tokenStorage.getUser()){
+      this.isLoggedIn = true;
+      console.log("setLoggedIn= true")
+      console.log(this.tokenStorage.getUser());
+      this.roles = this.tokenStorage.getUser().roles;
+    }
+    console.log(`loggedId = ${this.isLoggedIn}`)
   }
 
   onSubmit(){
-    console.log(this.form.value);
+    this.authService.login(this.form).subscribe(
+      data =>{
+        console.log("inside onSubmit");
+        console.log(data);
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+      },
+      error => {
+        console.log("inside onSubmit");
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.isLoginFailed = true;
+      }
+    )
   }
 
+  private reloadPage() {
+    window.location.reload();
+  }
 }

@@ -1,17 +1,55 @@
 
 <div class="login-page-wrapper">
     <div class="login-wrapper shadow-lg p-3 mb-5 bg-white rounded">
-        <form class="form-horizontal" [formGroup] = "form" (ngSubmit)="onSubmit()">
+        <form class="form-horizontal"
+              *ngIf="!isLoggedIn"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="name" formControlName="name">
+                <input  type="text"
+                        class="form-control"
+                        name="username"
+                        placeholder="username"
+                        [(ngModel)]="form.username"
+                        required
+                        #username="ngModel"/>
             </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="f.submitted && username.invalid">
+              Username is required!
+            </div>
+
             <div>
-                <input type="password" class="form-control" placeholder="password" formControlName="password">
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       placeholder="password"
+                       [(ngModel)]="form.password"
+                       required
+                       minlength="6"
+                       #password="ngModel">
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="f.submitted && password.invalid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">
+                Password must be at least 6 characters
+              </div>
             </div>
             <div>
                 <input type="submit" value="Login" class="btn btn-primary">
             </div>
         </form>
+        <div class="alert alert-success" *ngIf="isLoggedIn">
+          Logged in as {{ roles }}.
+        </div>
         <div>
             <a routerLink="/register"> U dont have account? Register!</a>
         </div>
