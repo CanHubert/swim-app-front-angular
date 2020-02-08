@@ -6,37 +6,33 @@ import {MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-board-admin',
-  templateUrl: './mat-table.html',
+  templateUrl: './mat-table-2.html',
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
     content = '';
-    users: User[];
-    dataSource: MatTableDataSource<User>;
-    displayedColumns: string[] = ['position', 'weight', 'symbol', 'name'];
+    dataSource;
+    displayedColumns: string[] = ['id', 'firstName', 'lastName', 'username', 'email'];
 
   constructor(private userService: UserService) { }
 
-  @ViewChild(MatPaginator , {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator , {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
+       this.initUsers();
+  }
 
-        this.userService.getUsers().subscribe(
-            data => {
-              this.users = data;
-            },
-            error => {
+  initUsers(){
+      this.userService.getUsers().subscribe(
+          data => {
+              this.dataSource = new MatTableDataSource<User>(data);
+              this.dataSource.sort = this.sort;
+              this.dataSource.paginator = this.paginator;
+          },
+          error => {
               this.content = JSON.parse(error.error).message;
-            }
-        );
-        this.dataSource = new MatTableDataSource(this.users);
-        console.log(this.dataSource);
-        console.log('users ' + this.users);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-
+          }
+      );
   }
 }
-
-

@@ -14,7 +14,7 @@
     position:sticky;
     max-height: 10em;
     top:0;
-    z-index: 10;
+    z-index: 1000;
 }
 
 .header-title{

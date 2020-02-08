@@ -1,31 +1,51 @@
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="dataSource" class=" table table-bordered" matSort>
+<table mat-table [dataSource]="dataSource"  matSort>
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Position Column -->
-    <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
         <td mat-cell *matCellDef="let user"> {{user.id}} </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
-        <td mat-cell *matCellDef="let user"> {{user.username}} </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
+    <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
         <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
     </ng-container>
 
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+    </ng-container>
+
     <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
+    <ng-container matColumnDef="lastName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
         <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+        <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roles">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
+        <td mat-cell *matCellDef="let user"> {{user.roles[0]}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roles1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles 1 </th>
+        <td mat-cell *matCellDef="let user"> {{user.roles[1]}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roles2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles 2 </th>
+        <td mat-cell *matCellDef="let user"> {{user.roles[2]}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -33,8 +53,5 @@
 
 
 </table>
-    <mat-paginator [length]="100"
-                   [pageSize]="10"
-                   [pageSizeOptions]="[5, 10, 25, 100]">
-    </mat-paginator>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 </div>

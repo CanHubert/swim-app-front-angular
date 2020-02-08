@@ -14,6 +14,7 @@ import {Route} from "@angular/router";
 export class ProfileComponent implements OnInit {
 
   user:User;
+  isLoaded = false;
   constructor(private tokenStorageService: TokenStorageService,
               private  userService : UserService) {
     if(tokenStorageService.getUser() == null)
@@ -27,7 +28,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserDetails(){
-    this.userService.getUserDetails(this.tokenStorageService.getUser().id).subscribe(data => this.user = data);
+    this.userService.getUserDetails(this.tokenStorageService.getUser().id).subscribe(data => {
+      this.user = data,
+          this.isLoaded = true});
     console.log("getUserDetails");
     console.log(this.user);
     if(this.user instanceof User)

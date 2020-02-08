@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {TokenStorageService} from "./token-storage.service";
-import {User} from "../common/user";
-import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {TokenStorageService} from './token-storage.service';
+import {User} from '../common/user';
 
 
 @Injectable({
@@ -13,48 +12,35 @@ export class UserService {
 
   private baseUrl = 'http://localhost:8080/';
 
-  constructor(private http : HttpClient, private tokenStorageService : TokenStorageService) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
-  getPublicContent(): Observable<any>{
+  getPublicContent(): Observable<any> {
     return this.createTextGet('test/all');
   }
 
-  getUserBoard(): Observable<any>{
+  getUserBoard(): Observable<any> {
     return this.createTextGet('test/user');
   }
 
-  getModeratorBoard():Observable<any>{
+  getModeratorBoard(): Observable<any> {
     return this.createTextGet('test/mod');
   }
 
-  getAdminBoard() :Observable<any>{
-    return this.createTextGet('test/admin');
-  }
-
-  getUsers(): Observable<User[]>{
-    const url: string  = 'api/users/roles';
-    console.log('getUsersWithRoles');
+  getUsers(): Observable<any> {
+    const url  = 'api/users/roles';
     return this.createJsonGet(url);
-
   }
 
-  getUserDetails(id: number): Observable<User>{
+  getUserDetails(id: number): Observable<User> {
     return this.createJsonGet(`api/users/${id}`);
   }
 
-  private createTextGet(endpoint:string): Observable<any>{
-    return this.http.get(this.baseUrl + endpoint, {responseType: "text"});
+  private createTextGet(endpoint: string): Observable<any> {
+    return this.http.get(this.baseUrl + endpoint, {responseType: 'text'});
   }
 
-  private createJsonGet(endpoint:string): Observable<any>{
+  private createJsonGet(endpoint: string): Observable<any> {
 
-    return this.http.get(this.baseUrl + endpoint, {responseType: "json"});
-  }
-
-}
-
-interface GetUsersResponse {
-  _embedded: {
-    users: User[];
+    return this.http.get(this.baseUrl + endpoint, {responseType: 'json'});
   }
 }

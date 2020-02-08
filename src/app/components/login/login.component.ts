@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import { TokenStorageService} from "../../services/token-storage.service";
+import {AuthService} from '../../services/auth.service';
+import { TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { TokenStorageService} from "../../services/token-storage.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any= {};
+  form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -18,20 +18,20 @@ export class LoginComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    console.log("oninit")
-    if(this.tokenStorage.getUser()){
+    console.log('oninit');
+    if (this.tokenStorage.getUser()) {
       this.isLoggedIn = true;
-      console.log("setLoggedIn= true")
+      console.log('setLoggedIn= true');
       console.log(this.tokenStorage.getUser());
       this.roles = this.tokenStorage.getUser().roles;
     }
-    console.log(`loggedId = ${this.isLoggedIn}`)
+    console.log(`loggedId = ${this.isLoggedIn}`);
   }
 
-  onSubmit(){
+  onSubmit() {
     this.authService.login(this.form).subscribe(
-      data =>{
-        console.log("inside onSubmit");
+      data => {
+        console.log('inside onSubmit');
         console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
@@ -42,12 +42,12 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       error => {
-        console.log("inside onSubmit");
+        console.log('inside onSubmit');
         console.log(error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }
-    )
+    );
   }
 
   private reloadPage() {
