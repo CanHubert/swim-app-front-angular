@@ -6,7 +6,7 @@ import {MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-board-admin',
-  templateUrl: './board-admin.component.html',
+  templateUrl: './mat-table.html',
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
