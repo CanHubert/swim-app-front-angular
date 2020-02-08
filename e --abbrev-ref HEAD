@@ -1,0 +1,78 @@
+[33mcommit ceadd8b8d7a917fc936010c572e5a43ddb3f2b0c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/test-branch[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mtest-branch[m[33m, [m[1;32mtable-paginator[m[33m)[m
+Author: Hubert Can <canhubert@gmail.com>
+Date:   Sat Feb 8 13:44:17 2020 +0000
+
+    delete home component
+
+[33mcommit 2be1d5167b146c06bd3011423b33e6587ba64c39[m
+Author: Hubert Can <canhubert@gmail.com>
+Date:   Sat Feb 8 13:42:19 2020 +0000
+
+    add home component
+
+[33mcommit b77c97b05948149aae738db2e4783216051f7665[m
+Author: Hubert Can <canhubert@gmail.com>
+Date:   Sat Feb 8 13:37:29 2020 +0000
+
+    delete home component
+
+[33mcommit 4105fa52af156a23d3535c18eb590279fcd68ad9[m
+Merge: 8b8f8df fead33e
+Author: CanHubert <canhubert@gmail.com>
+Date:   Sat Feb 8 13:11:44 2020 +0000
+
+    Merge pull request #2 from CanHubert/login-register
+    
+    Login register
+
+[33mcommit fead33eb2136a603e32b5d22ad5286e8601935b6[m[33m ([m[1;31morigin/login-register[m[33m, [m[1;32mlogin-register[m[33m)[m
+Author: CanHubert <canhubert@gmail.com>
+Date:   Sat Feb 8 13:09:12 2020 +0000
+
+    add authService
+
+[33mcommit db7649f48ba1516b4c6ab54455949852e756fcdc[m
+Merge: fedc599 8b8f8df
+Author: CanHubert <canhubert@gmail.com>
+Date:   Sat Feb 8 02:43:12 2020 +0000
+
+    Merge branch 'master' into login-register
+
+[33mcommit fedc5993a512fc4670d945b5d88746f8d4fc227b[m
+Author: CanHubert <canhubert@gmail.com>
+Date:   Sat Feb 8 00:44:46 2020 +0000
+
+    add authService
+
+[33mcommit 8b8f8df29a13dd24a87cc3e2fa86e87a3bb0b480[m
+Merge: 3f77e77 a22e46e
+Author: CanHubert <canhubert@gmail.com>
+Date:   Mon Feb 3 14:06:44 2020 +0000
+
+    Merge pull request #1 from CanHubert/login-register
+    
+    Login register
+
+[33mcommit a22e46edea2458a2f8d874666265f42c729c3313[m
+Author: CanHubert <canhubert@gmail.com>
+Date:   Mon Feb 3 14:04:42 2020 +0000
+
+    add authService
+
+[33mcommit a038abb1aecfa29a3dd63072513c841d1dc3401a[m
+Author: CanHubert <canhubert@gmail.com>
+Date:   Sat Feb 1 00:39:52 2020 +0000
+
+    add authService
+
+[33mcommit 3f77e771464541027e83c4c3a37730d805f5d149[m
+Author: CanHubert <canhubert@gmail.com>
+Date:   Thu Jan 30 20:09:58 2020 +0000
+
+    add authService
+
+[33mcommit 4f6748b75a290bec24c39ff901f3d06130d06328[m
+Author: CanHubert <canhubert@gmail.com>
+Date:   Thu Jan 30 19:46:17 2020 +0000
+
+    Initial commit

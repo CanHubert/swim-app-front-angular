@@ -6,7 +6,7 @@ import {MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-board-admin',
-  templateUrl: './board-admin.component.html',
+  templateUrl: './mat-table.html',
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
@@ -15,6 +15,7 @@ export class BoardAdminComponent implements OnInit {
     dataSource: MatTableDataSource<User>;
     displayedColumns: string[] = ['position', 'weight', 'symbol', 'name'];
     text = 'some text';
+
   constructor(private userService: UserService) { }
 
   @ViewChild(MatPaginator , {static: false}) paginator: MatPaginator;
