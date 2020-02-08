@@ -14,11 +14,7 @@ export class BoardAdminComponent implements OnInit {
     users: User[];
     dataSource: MatTableDataSource<User>;
     displayedColumns: string[] = ['position', 'weight', 'symbol', 'name'];
-<<<<<<< Updated upstream
-    text = 'some text';
-=======
 
->>>>>>> Stashed changes
   constructor(private userService: UserService) { }
 
   @ViewChild(MatPaginator , {static: false}) paginator: MatPaginator;
