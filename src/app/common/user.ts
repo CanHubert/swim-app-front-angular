@@ -4,7 +4,7 @@ export class User {
     password : string;
     firstName: string;
     lastName: string;
-    email: string
+    email: string;
+    accessToken: string;
     roles: string[];
-    accessToken: string
 }

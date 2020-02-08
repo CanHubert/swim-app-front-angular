@@ -14,7 +14,7 @@ import {AuthGuard} from "./helpers/auth-guard";
 const routes: Routes =[
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  {path: 'profile', component: ProfileComponent},
   {path: 'user', component: BoardUserComponent},
   {path: 'mod', component: BoardModeratorComponent},
   {path: 'admin', component: BoardAdminComponent},
