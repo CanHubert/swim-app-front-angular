@@ -23,7 +23,7 @@ import {authInterceptorProviders} from "./helpers/auth-interceptor";
 import {AppRoutingModule} from "./app.routing.module";
 import { PriceListComponent } from './components/price-list/price-list.component';
 import {AuthGuard} from "./helpers/auth-guard";
-
+import {MatSliderModule, MatTableModule} from "@angular/material";
 
 
 @NgModule({
@@ -40,6 +40,7 @@ import {AuthGuard} from "./helpers/auth-guard";
     PriceListComponent
   ],
   imports: [
+    MatSliderModule,MatTableModule,
     FormsModule,
     BrowserAnimationsModule,
     CommonModule,

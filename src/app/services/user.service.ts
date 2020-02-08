@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TokenStorageService} from "./token-storage.service";
 import {User} from "../common/user";
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -30,6 +31,16 @@ export class UserService {
     return this.createTextGet('test/admin');
   }
 
+  getUsers(): Observable<any>{
+    const url: string  = 'api/users/roles';
+    console.log('getUsersWithRoles');
+    return this.createJsonGet(url);
+    // return this.http.get<GetUsersResponse>(url).pipe(map(
+    //     data=>
+    //           data._embedded.users)
+    // );
+  }
+
   getUserDetails(id: number): Observable<User>{
     return this.createJsonGet(`api/users/${id}`);
   }
@@ -43,4 +54,10 @@ export class UserService {
     return this.http.get(this.baseUrl + endpoint, {responseType: "json"});
   }
 
+}
+
+interface GetUsersResponse {
+  _embedded: {
+    users: User[];
+  }
 }

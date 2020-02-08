@@ -12,6 +12,7 @@
     position:sticky;
     max-height: 10em;
     top:0;
+    z-index: 10;
 }
 
 .header-title{
@@ -103,3 +104,5 @@ footer{
     color: white;
     width:100%;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
