@@ -31,14 +31,11 @@ export class UserService {
     return this.createTextGet('test/admin');
   }
 
-  getUsers(): Observable<any>{
+  getUsers(): Observable<User[]>{
     const url: string  = 'api/users/roles';
     console.log('getUsersWithRoles');
     return this.createJsonGet(url);
-    // return this.http.get<GetUsersResponse>(url).pipe(map(
-    //     data=>
-    //           data._embedded.users)
-    // );
+
   }
 
   getUserDetails(id: number): Observable<User>{

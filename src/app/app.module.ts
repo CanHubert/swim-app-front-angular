@@ -4,7 +4,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
-import {  FormsModule  } from '@angular/forms';
+import { FormsModule  } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
 import { RegisterComponent } from './components/register/register.component';
@@ -13,17 +13,18 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { ProfileComponent } from './profile/profile.component';
-import {authInterceptorProviders} from "./helpers/auth-interceptor";
-import {AppRoutingModule} from "./app.routing.module";
+import { authInterceptorProviders} from "./helpers/auth-interceptor";
+import { AppRoutingModule} from "./app.routing.module";
 import { PriceListComponent } from './components/price-list/price-list.component';
-import {AuthGuard} from "./helpers/auth-guard";
-import {MatSliderModule, MatTableModule} from "@angular/material";
+import { AuthGuard} from "./helpers/auth-guard";
+import { MaterialModule} from "./material/material.module";
+
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import {MatSliderModule, MatTableModule} from "@angular/material";
     PriceListComponent
   ],
   imports: [
-    MatSliderModule,MatTableModule,
+    MaterialModule,
     FormsModule,
     BrowserAnimationsModule,
     CommonModule,
@@ -49,7 +50,7 @@ import {MatSliderModule, MatTableModule} from "@angular/material";
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory})
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
