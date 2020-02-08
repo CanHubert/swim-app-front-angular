@@ -14,16 +14,15 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './components/home/home.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { ProfileComponent } from './profile/profile.component';
-import { authInterceptorProviders} from "./helpers/auth-interceptor";
-import { AppRoutingModule} from "./app.routing.module";
+import { authInterceptorProviders} from './helpers/auth-interceptor';
+import { AppRoutingModule} from './app.routing.module';
 import { PriceListComponent } from './components/price-list/price-list.component';
-import { AuthGuard} from "./helpers/auth-guard";
-import { MaterialModule} from "./material/material.module";
+import { AuthGuard} from './helpers/auth-guard';
+import { MaterialModule} from './material/material.module';
 
 
 
@@ -33,7 +32,6 @@ import { MaterialModule} from "./material/material.module";
     LoginComponent,
     RegisterComponent,
     CalendarComponent,
-    HomeComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
