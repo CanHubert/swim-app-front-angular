@@ -20,5 +20,17 @@
             <th>Email</th>
             <td>{{user.email}}</td>
         </tr>
+        <tr *ngIf="isEdit">
+            <th>Roles</th>
+            <td>{{user.roles}}</td>
+        </tr>
+        <tr *ngIf="isEdit">
+            <th>Countries</th>
+            <td>{{user.countries}}</td>
+        </tr>
     </table>
+
+    <button (click)="promote()"  *ngIf="isEdit">Advance to {{role}}</button>
+
+    <p *ngFor="let temp of roles"> {{temp.name}}</p>
 </div>

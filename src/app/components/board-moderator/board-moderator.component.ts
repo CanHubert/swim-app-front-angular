@@ -11,14 +11,7 @@ export class BoardModeratorComponent implements OnInit {
   constructor(private userService :UserService) { }
 
   ngOnInit() {
-    this.userService.getModeratorBoard().subscribe(
-      data=>{
-        this.content = data;
-      },
-      error => {
-        this.content = JSON.parse(error.error).message;
-      }
-    )
+
   }
 
 }
