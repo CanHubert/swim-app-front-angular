@@ -20,17 +20,20 @@
             <th>Email</th>
             <td>{{user.email}}</td>
         </tr>
-        <tr *ngIf="isEdit">
+        <tr>
             <th>Roles</th>
-            <td>{{user.roles}}</td>
+            <td>{{roleNames}}</td>
         </tr>
-        <tr *ngIf="isEdit">
+        <tr>
             <th>Countries</th>
             <td>{{user.countries}}</td>
         </tr>
     </table>
+    <p>
+        <button id="promote_button" (click)="promote()"  [disabled]="!canPromote">Advance</button>
+    </p>
+    <p>
+        <button id="demote_button" (click)="demote()" [disabled]="!canDemote">Demote</button>
+    </p>
 
-    <button (click)="promote()"  *ngIf="isEdit">Advance to {{role}}</button>
-
-    <p *ngFor="let temp of roles"> {{temp.name}}</p>
 </div>

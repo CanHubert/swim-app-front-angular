@@ -1,6 +1,7 @@
 export class Role {
     id : number;
     name : string;
+    order: number;
 
 
     constructor(role: any) {
@@ -8,6 +9,7 @@ export class Role {
         {
             this.id = role.id;
             this.name = role.name;
+            this.order = role.order;
         }
     }
 

@@ -1,56 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import { TokenStorageService} from '../../services/token-storage.service';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {};
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
+    form: any = {};
+    isLoggedIn = false;
+    isLoginFailed = false;
+    errorMessage = '';
+    roles: string[] = [];
 
-  constructor(private authService: AuthService,
-              private tokenStorage: TokenStorageService) { }
-
-  ngOnInit() {
-    console.log('oninit');
-    if (this.tokenStorage.getUser()) {
-      this.isLoggedIn = true;
-      console.log('setLoggedIn= true');
-      console.log(this.tokenStorage.getUser());
-      this.roles = this.tokenStorage.getUser().roles;
+    constructor(private authService: AuthService,
+                private tokenStorage: TokenStorageService) {
     }
-    console.log(`loggedId = ${this.isLoggedIn}`);
-  }
 
-  onSubmit() {
-    this.authService.login(this.form).subscribe(
-      data => {
-        console.log('inside onSubmit');
-        console.log(data);
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+    ngOnInit() {
+        console.log('oninit');
+        if (this.tokenStorage.getUser()) {
+            this.isLoggedIn = true;
+            console.log('setLoggedIn= true');
+            console.log(this.tokenStorage.getUser());
+            this.roles = this.tokenStorage.getUser().roles.map(role => role.name);
+        }
+        console.log(`loggedId = ${this.isLoggedIn}`);
+    }
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      error => {
-        console.log('inside onSubmit');
-        console.log(error);
-        this.errorMessage = error.error.message;
-        this.isLoginFailed = true;
-      }
-    );
-  }
+    onSubmit() {
+        this.authService.login(this.form).subscribe(
+            data => {
+                console.log('inside onSubmit');
+                console.log(data);
+                this.tokenStorage.saveToken(data.accessToken);
+                this.tokenStorage.saveUser(data);
 
-  private reloadPage() {
-    window.location.reload();
-  }
+                this.isLoginFailed = false;
+                this.isLoggedIn = true;
+                this.roles = this.tokenStorage.getUser().roles.map(role => role.name);
+                this.reloadPage();
+            },
+            error => {
+                console.log('inside onSubmit');
+                console.log(error);
+                this.errorMessage = error.error.message;
+                this.isLoginFailed = true;
+            }
+        );
+    }
+
+    private reloadPage() {
+        window.location.reload();
+    }
 }
