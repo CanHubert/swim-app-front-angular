@@ -1,11 +1,12 @@
 table > tr > th{
-    background-color: #5c5254;
+    background-color: #13407c;
     color: aliceblue;
     padding: 1rem;
 }
 
 table > tr > td {
-    background-color: #9c9294;
+    background-color: #207d9c;
     padding: 1rem;
     color: white;
+    width: 70%;
 }

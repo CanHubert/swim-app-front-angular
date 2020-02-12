@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../common/user';
-import {TokenStorageService} from '../services/token-storage.service';
-import {UserService} from '../services/user.service';
 import {Role} from '../common/role';
-import {RoleService} from '../services/role.service';
-import {ActivatedRoute} from '@angular/router';
-import {disableDebugTools} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProfileFacadeService} from '../facade/profile-facade.service';
+import {UserHelper} from '../helpers/UserHelper';
+import {FormControl} from '@angular/forms';
 
 @Component({
     selector: 'app-profile',
@@ -14,6 +13,9 @@ import {disableDebugTools} from '@angular/platform-browser';
 })
 export class ProfileComponent implements OnInit {
 
+    public UserHelper = UserHelper;
+    countries = new FormControl();
+    countriesList: string[];
     user: User;
     isLoaded = false;
     isEdit = false;
@@ -23,11 +25,10 @@ export class ProfileComponent implements OnInit {
     roles: Role[] = [];
     roleNames: string[];
 
-    constructor(private tokenStorageService: TokenStorageService,
-                private userService: UserService,
-                private roleService: RoleService,
-                private route: ActivatedRoute) {
-        if (tokenStorageService.getUser() == null) {
+    constructor(private facade : ProfileFacadeService,
+                private route: ActivatedRoute,
+                private router : Router) {
+        if (facade.getUser() == null) {
             window.location.href = '/login';
         }
     }
@@ -36,15 +37,17 @@ export class ProfileComponent implements OnInit {
 
         if (this.route.snapshot.paramMap.has('id')) {
             this.getUserDetails(Number(this.route.snapshot.paramMap.get('id')));
+            this.facade.getCountries().subscribe(data=> this.countriesList = data.map(c=> c.name));
             this.isEdit = true;
 
         } else {
-            this.getUserDetails(this.tokenStorageService.getUser().id);
+            this.getUserDetails(this.facade.getUser().id);
         }
+
     }
 
     getUserDetails(id: number) {
-        this.userService.getUserDetails(id).subscribe(data => {
+        this.facade.getUserDetails(id).subscribe(data => {
             this.user = data;
             this.roleNames = this.user.roles.map(role => role.name).reverse();
             this.isLoaded = true;
@@ -52,14 +55,14 @@ export class ProfileComponent implements OnInit {
         });
 
         if (this.user instanceof User) {
-            this.tokenStorageService.saveUser(this.user);
+            this.facade.saveUser(this.user);
         } else {
             console.log('user is undefined');
         }
     }
 
     findPromotionRole() {
-        this.roleService.getRoles().subscribe(data => {
+        this.facade.getRoles().subscribe(data => {
             this.roles = data;
 
             let rolesNames: string[] = this.user.roles.map(role => role.name);
@@ -76,7 +79,8 @@ export class ProfileComponent implements OnInit {
             }
 
 
-        });
+        },
+            error => console.log(error));
     }
 
     promote() {
@@ -112,8 +116,12 @@ export class ProfileComponent implements OnInit {
     }
 
     private updateUserRole() {
-        this.userService.addUserRole(this.user).subscribe(() => this.ngOnInit(), error => {
+        this.facade.addUserRole(this.user).subscribe(() => this.ngOnInit(), error => {
             console.log(error);
         });
+    }
+
+    goToAdmin() {
+        this.router.navigateByUrl("/admin");
     }
 }

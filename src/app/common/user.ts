@@ -1,4 +1,5 @@
 import {Role} from './role';
+import {Country} from './country';
 
 export class User {
     id: number;
@@ -9,13 +10,12 @@ export class User {
     email: string;
     accessToken: string;
     roles: Role[];
-    countries: string[];
+    countries: Country[];
 
 
     constructor(user: any) {
         if(user)
         {
-            console.log(`inside user constructor ${user.id}`);
             this.id = user.id;
             this.username = user.username;
             this.firstName = user.firstName;
@@ -26,7 +26,4 @@ export class User {
         }
     }
 
-    toString(): string{
-        return `id = ${this.id}, username= ${this.username}, firstname = ${this.firstName}`
-    }
 }

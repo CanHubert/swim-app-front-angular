@@ -20,6 +20,7 @@ export class AppComponent implements OnInit{
     console.log("on init in app component " + this.isLoggedIn);
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
+      console.log(user.roles);
       this.roles = user.roles.map(role => role.name);
       console.log(`roles = ${this.roles}`);
       this.showAdminBoard = this.roles.includes('ADMIN');

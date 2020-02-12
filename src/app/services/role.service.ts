@@ -15,7 +15,9 @@ export class RoleService {
     }
 
     getRoles(): Observable<Role[]> {
-        return this.http.get<Roles>('http://localhost:8080/api/roles?sort=order').pipe(map(res => res._embedded.roles));
+        const url = baseUrl + 'api/roles';
+        console.log((url));
+        return this.http.get<Roles>(url).pipe(map(res => res._embedded.roles));
     }
 }
 
