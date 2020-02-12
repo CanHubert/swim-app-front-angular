@@ -10,3 +10,9 @@ table > tr > td {
     color: white;
     width: 70%;
 }
+
+#promote_button{
+    background-color: #13407c;
+    color: white;
+}
+

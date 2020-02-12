@@ -34,8 +34,8 @@ export class ProfileFacadeService {
       return this.userService.getUserDetails(id);
     }
 
-    addUserRole(user:User): Observable<void>{
-      return this.userService.addUserRole(user);
+    updateUser(user:User): Observable<void>{
+      return this.userService.updateUser(user);
     }
     /** roleService */
     getRoles() : Observable<Role[]>{

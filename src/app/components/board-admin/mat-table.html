@@ -46,7 +46,9 @@
 
             <ng-container matColumnDef="details">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Details</th>
-                <td mat-cell *matCellDef="let user"><a  (click)="showUserDetails(user)">Details</a></td>
+                <td mat-cell *matCellDef="let user">
+                    <button mat-raised-button color="primary"  (click)="showUserDetails(user)">Details</button>
+                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>

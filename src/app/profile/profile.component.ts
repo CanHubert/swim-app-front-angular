@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileFacadeService} from '../facade/profile-facade.service';
 import {UserHelper} from '../helpers/UserHelper';
 import {FormControl} from '@angular/forms';
+import {Country} from '../common/country';
 
 @Component({
     selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
     public UserHelper = UserHelper;
     countries = new FormControl();
-    countriesList: string[];
+    countriesList: Country[];
     user: User;
     isLoaded = false;
     isEdit = false;
@@ -37,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
         if (this.route.snapshot.paramMap.has('id')) {
             this.getUserDetails(Number(this.route.snapshot.paramMap.get('id')));
-            this.facade.getCountries().subscribe(data=> this.countriesList = data.map(c=> c.name));
+            this.facade.getCountries().subscribe(data=> this.countriesList = data.map(c=> new Country(c)));
             this.isEdit = true;
 
         } else {
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
             this.user = data;
             this.roleNames = this.user.roles.map(role => role.name).reverse();
             this.isLoaded = true;
+            this.countries.setValue(this.user.countries);
             this.findPromotionRole();
         });
 
@@ -96,6 +98,17 @@ export class ProfileComponent implements OnInit {
 
     }
 
+    saveCountries(){
+        console.log(this.countries);
+        console.log(this.countries.value);
+        this.user.countries = this.countries.value;
+
+        this.facade.updateUser(this.user).subscribe(
+            ()=> this.ngOnInit(),
+            error => console.log(error)
+        )
+    }
+
 
     private activePromoteButton(){
         this.canPromote = true;
@@ -116,7 +129,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private updateUserRole() {
-        this.facade.addUserRole(this.user).subscribe(() => this.ngOnInit(), error => {
+        this.facade.updateUser(this.user).subscribe(() => this.ngOnInit(), error => {
             console.log(error);
         });
     }

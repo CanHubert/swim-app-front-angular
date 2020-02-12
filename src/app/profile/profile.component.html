@@ -31,28 +31,33 @@
     </table>
     <div *ngIf="isEdit">
         <p>
-            <button id="promote_button" (click)="promote()" [disabled]="!canPromote">Advance</button>
+            <button  mat-raised-button  class="btn-lg" id="promote_button" (click)="promote()" [disabled]="!canPromote">Advance</button>
         </p>
         <p>
-            <button id="demote_button" (click)="demote()" [disabled]="!canDemote">Demote</button>
+            <button mat-raised-button color="warn" class="btn-lg" id="demote_button" (click)="demote()" [disabled]="!canDemote">Demote</button>
         </p>
 
-        <p>
+        <div>
             <mat-form-field>
                 <mat-label>Countries</mat-label>
                 <mat-select [formControl]="countries" multiple>
                     <mat-option *ngFor="let country of countriesList" [value]="country">
-                        {{country}}
+                        {{country.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </p>
+
+            <button mat-raised-button color="primary" class="btn-lg" style="margin-left: 1rem" (click)="saveCountries()">Save</button>
+        </div>
+
         <p>
-            <button (click)="goToAdmin()">Back to users</button>
+            <button mat-raised-button color="primary" class="btn-lg" (click)="goToAdmin()">Back to users</button>
         </p>
 
 
     </div>
+
+
 
 
 </div>
