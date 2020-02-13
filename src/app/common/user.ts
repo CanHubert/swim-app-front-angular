@@ -1,5 +1,6 @@
 import {Role} from './role';
 import {Country} from './country';
+import {Children} from './children';
 
 export class User {
     id: number;
@@ -11,6 +12,7 @@ export class User {
     accessToken: string;
     roles: Role[];
     countries: Country[];
+    childrens : Children[];
 
 
     constructor(user: any) {
@@ -23,6 +25,7 @@ export class User {
             this.email = user.email;
             this.roles = user.roles;
             this.countries = user.countries;
+            this.childrens = user.childrens;
         }
     }
 

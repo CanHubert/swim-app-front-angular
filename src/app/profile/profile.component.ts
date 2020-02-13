@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
     getUserDetails(id: number) {
         this.facade.getUserDetails(id).subscribe(data => {
             this.user = data;
+            console.log(this.user);
             this.roleNames = this.user.roles.map(role => role.name).reverse();
             this.isLoaded = true;
             this.countries.setValue(this.user.countries);
@@ -68,7 +69,6 @@ export class ProfileComponent implements OnInit {
             this.roles = data;
 
             let rolesNames: string[] = this.user.roles.map(role => role.name);
-            console.log(' roleNames =' + rolesNames);
             if (rolesNames.includes('MANAGER')) {
                 this.canPromote = false;
                 this.advRole = undefined;
@@ -79,8 +79,6 @@ export class ProfileComponent implements OnInit {
 
                 this.advRole = this.roles.filter(role => role.name === 'INSTRUCTOR')[0];
             }
-
-
         },
             error => console.log(error));
     }
@@ -118,7 +116,9 @@ export class ProfileComponent implements OnInit {
         this.canDemote = true;
     }
 
-
+    getPromoteLabel():string{
+        return this.advRole === undefined ? `Can't be promoted!`: `Promote to ${this.advRole.name.toLowerCase()}`;
+    }
 
     demote() {
         this.user.roles.pop();
