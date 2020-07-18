@@ -1,0 +1,28 @@
+<h2>Add children</h2>
+
+<mat-form-field>
+    <label>
+        <input matInput [(ngModel)]="data.firstName" placeholder="First Name">
+    </label>
+</mat-form-field>
+
+<mat-form-field>
+    <label >
+        <input matInput [(ngModel)]="data.lastName" placeholder="Last Name">
+    </label>
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Date of birth" [(ngModel)]="data.dateOfBirth">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
+<div>
+    <button class="float-left"  mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+
+    <button class="float-right" mat-raised-button color="primary" (click)="addChildren()">Add children</button>
+
+</div>
+
